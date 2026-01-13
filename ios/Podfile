@@ -1,0 +1,47 @@
+# AutoJobSearch Podfile
+
+platform :ios, '15.0'
+use_frameworks!
+
+target 'AutoJobSearch' do
+  # Firebase
+  pod 'Firebase/Core'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Crashlytics'
+  pod 'Firebase/Messaging'
+  pod 'Firebase/Auth'
+
+  # Networking
+  pod 'Alamofire', '~> 5.7'
+
+  # PDF Processing
+  pod 'PDFKit'
+
+  # Image Processing
+  pod 'SDWebImageSwiftUI', '~> 2.0'
+
+  # Keychain
+  pod 'KeychainAccess', '~> 4.2'
+
+  # Localization
+  pod 'SwiftGoogleTranslate', '~> 1.0'
+
+  # UI Components
+  pod 'SwiftUICharts', '~> 2.0'
+
+  # Development
+  pod 'SwiftLint'
+
+  # Testing
+  pod 'Quick'
+  pod 'Nimble'
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '15.0'
+      config.build_settings['SWIFT_VERSION'] = '5.0'
+    end
+  end
+end
